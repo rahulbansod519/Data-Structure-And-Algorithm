@@ -1,0 +1,22 @@
+package com.company.practice;
+
+import java.util.Arrays;
+
+public class ReverseString {
+    public static void helper(char[] s, int idx, char[] ans){
+        if(idx == 0){
+            System.out.println(Arrays.toString(ans));
+            return;
+        }
+        char ch = s[idx-1];
+        ans[s.length-idx] = ch;
+        helper(s,idx-1,ans);
+
+    }
+
+    public static void main(String[] args) {
+        char s[] = {'a','e','g'};
+        char ans[] = new char[s.length];
+        helper(s,s.length,ans);
+    }
+}
