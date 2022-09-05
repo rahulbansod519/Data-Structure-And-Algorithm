@@ -1,6 +1,7 @@
 package com.company.practice;
 
 public class FirstUpper {
+// Recursive Function
     static int firstUpperLetterRecursive(String str, int idx){
         if (idx == str.length()){
             return -1;
@@ -12,6 +13,7 @@ public class FirstUpper {
         }
         return firstUpperLetterRecursive(str,idx+1);
     }
+    // iterative Function
     static int firstUpperCaseIterative(String str){
       for (int i=0; i<str.length(); i++){
           char ch = str.charAt(i);
