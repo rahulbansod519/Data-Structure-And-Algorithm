@@ -2,12 +2,15 @@ package com.company.practice;
 
 public class SquareRoot {
     static int squareRoot(int n){
-        if (n==0){
-            return 0;
-        }
         int start = 0;
         int end = n;
         int ans=0;
+         if (n==0){
+            return 0;
+        }
+         if(n==1){
+            return 1;
+        }
         while (start <= end){
             int mid = (start+end)/2;
             if (mid <= n/mid){
