@@ -1,0 +1,23 @@
+package com.company.practice;
+public class NextGretest {
+    static char nextGretestletter(char[] letter, char target){
+        int start =0;
+        int end = letter.length-1;
+        char temp = letter[0];
+        while (start <= end){
+            int mid = (start+end)/2;
+            if (target < letter[mid]){
+                temp = letter[mid];
+                end = mid-1;
+            }
+            else {
+                start = mid + 1;
+            }
+        }
+        return temp;
+    }
+    public static void main(String[] args) {
+        char[] letters = {'c','f','j','l','n','q','w'};
+        System.out.println(nextGretestletter(letters,'d'));
+    }
+}
