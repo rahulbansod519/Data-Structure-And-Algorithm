@@ -1,0 +1,31 @@
+package com.company.practice;
+
+public class BinarySearch {
+    public static  int helper(int[] nums, int target,int start,int end){
+        if (start == nums.length){
+            return -1;
+        }
+        while (end >= start){
+
+            int mid = (start+end) / 2;
+            if (nums[mid] == target){
+                return mid;
+            }
+            if(target > nums[mid] ){
+                return helper(nums,target,mid+1,end);
+            }
+            else{
+                return helper(nums,target,start,mid-1);
+            }
+        }
+        return -1;
+    }
+    public static int search(int[] nums, int target) {
+        return helper(nums,target,0,nums.length);
+    }
+    public static void main(String[] args) {
+        int[] nums = {-1,0,3,5,9,12};
+        int target = 3;
+        System.out.println(search(nums,target));
+    }
+}

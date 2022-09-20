@@ -1,0 +1,33 @@
+package com.company.practice;
+
+public class FirstUpper {
+// Recursive Function
+    static int firstUpperLetterRecursive(String str, int idx){
+        if (idx == str.length()){
+            return -1;
+        }
+        char ch = str.charAt(idx);
+        if (Character.isUpperCase(ch)){
+            System.out.print(str.substring(idx,idx+1)+" at index ");
+            return idx;
+        }
+        return firstUpperLetterRecursive(str,idx+1);
+    }
+    // iterative Function
+    static int firstUpperCaseIterative(String str){
+      for (int i=0; i<str.length(); i++){
+          char ch = str.charAt(i);
+          if (Character.isUpperCase(ch)){
+              System.out.print(str.substring(i,i+1)+" at index ");
+              return i;
+          }
+      }
+      return -1;
+    }
+    public static void main(String[] args) {
+        String str = "helloNicetomeetyou";
+        System.out.println(firstUpperLetterRecursive(str,0));
+        System.out.println(firstUpperCaseIterative(str));
+    }
+
+}

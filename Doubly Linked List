@@ -1,0 +1,164 @@
+package LinkedList;
+
+public class DLL {
+    private Node head;
+    private class Node{
+        private int value;
+        private Node next;
+        private Node prev;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public Node(int value, Node next, Node prev) {
+            this.value = value;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+    //Find node By Value
+    public Node find(int val){
+        Node temp = head;
+        while (temp != null){
+            if (temp.value == val){
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+    //Find node by index
+    public Node get(int index){
+        Node temp = head;
+        for (int i=0; i<index; i++){
+            temp = temp.next;
+        }
+        return temp;
+    }
+    //insertion operations
+    public void insertFirst(int val){
+        Node node = new Node(val);
+        node.next = head;
+        node.prev = null;
+        if (head != null) {
+            head.prev = node;
+        }
+        head = node;
+    }
+    public void insertLast(int val){
+        Node node = head;
+        if (head == null){
+            insertFirst(val);
+            return;
+        }
+        while (node.next != null){
+            node = node.next;
+        }
+        Node newNode = new Node(val);
+        node.next = newNode;
+        newNode.prev =  node;
+    }
+    public void insert(int val, int index){
+        if (index == 0){
+            insertFirst(val);
+            return;
+        }
+        Node temp = head;
+        for (int i=1; i<index;i++) {
+            temp = temp.next;
+        }
+        Node newNode = new Node(val,temp.next,temp);
+        temp.next = newNode;
+    }
+    public void insertAfter(int value,int indexValue){
+        Node temp = find(indexValue);
+        if(temp != null){
+            Node newNode = new Node(value,temp.next,temp);
+            temp.next = newNode;
+        }
+        else {
+            System.out.println("Value Not found");
+        }
+    }
+    public void inserBefore(int value,int indexValue){
+        Node temp = find(indexValue);
+        if (temp.prev == null){
+            insertFirst(value);
+            return;
+        }
+        if (temp != null){
+            Node newNode = new Node(value,temp,temp.prev);
+            temp.prev.next = newNode;
+        }
+    }
+    //deletion operations
+    public int deleteFirst(){
+        if (head.next == null){
+            int val = head.value;
+            head = null;
+            return val;
+        }
+        int val = head.value;
+        head = head.next;
+        head.prev = null;
+        return val;
+    }
+    public int deleteLast(){
+        if (head.next == null){
+            int val = head.value;
+            head = null;
+            return val;
+        }
+        Node node = head;
+        while (node.next != null){
+            node = node.next;
+        }
+        int val = node.value;
+        node.prev.next = null;
+        return val;
+    }
+    public int delete(int index){
+        if (index == 0){
+            int val = deleteFirst();
+            return val;
+        }
+        Node temp = get(index-1);
+        int val = temp.next.value;
+        temp.next = temp.next.next;
+        return val;
+    }
+    public int deleteAfter(int value){
+        Node temp = find(value);
+        if (temp == null){
+            return -1;
+        }
+        if (temp.next == null){
+            return -1;
+        }
+        int val = temp.next.value;
+        temp.next = temp.next.next;
+        return val;
+    }
+    public int deleteBefore(int value){
+        Node temp = find(value);
+        if (temp.prev == null){
+            return -1;
+        }
+        int val = temp.prev.value;
+        temp.prev = temp.prev.prev;
+        temp.prev.prev.next = temp;
+        return val;
+
+    }
+    //Display list
+    public void display(){
+        Node node = head;
+        while (node != null){
+            System.out.print(node.value+" --> ");
+            node = node.next;
+        }
+        System.out.println("End");
+    }
+}
+
