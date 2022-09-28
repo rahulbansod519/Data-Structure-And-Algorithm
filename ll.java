@@ -5,6 +5,7 @@ public class ll {
   private Node tail;
   private int size;
 
+  
   public ll() {
     this.size = 0;
   }
@@ -13,6 +14,9 @@ public class ll {
     private int value;
     private Node next;
 
+    public Node(){
+    
+    };
     public Node(int value) {
       this.value = value;
     }
@@ -156,5 +160,33 @@ public class ll {
         }
         temp.next = temp.next.next;
         return slow.value;
+    }
+    public Node sortlist(Node head){
+        if (head == null || head.next == null){
+            return head;
+        }
+        Node mid = findMid();
+        Node left = sortlist(head);
+        Node right = sortlist(mid);
+
+        return merge(left,right);
+    }
+    private Node merge(Node left, Node right) {
+        Node temp = new Node();
+        Node tail = temp;
+        while (left != null && right != null){
+            if (left.value < right.value){
+                tail.next = left;
+                left = left.next;
+                tail = tail.next;
+            }
+            else {
+                tail.next = right;
+                right = right.next;
+                tail = tail.next;
+            }
+        }
+        tail.next = (left != null) ? left : right;
+        return temp.next;
     }
 }
